@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS,FIND_DOG_BY_ID, FIND_DOGS, GET_ALL_TEMPERAMENTS, FILTER_BY_TEMPERAMENT, FILTER_BY_SOURCE, ORDER_BY_NAME, ORDER_BY_WEIGHT } from "./typeActions";
+import { GET_ALL_DOGS, FIND_DOG_BY_ID, FIND_DOGS, GET_ALL_TEMPERAMENTS, FILTER_BY_TEMPERAMENT, FILTER_BY_SOURCE, ORDER_BY_NAME, ORDER_BY_WEIGHT } from "./typeActions";
 
 const initialState = {
   allDogs: [],
@@ -19,7 +19,7 @@ const reducer = (state = initialState, { type, payload }) => {
   let orderedDogs;
   let orderedWeight;
 
-  
+
   switch (type) {
     case GET_ALL_DOGS:
       return {
@@ -106,7 +106,7 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         findedDogs: payload, // Asignamos el perro encontrado por ID a findedDogs
       };
- 
+
     default:
       return state;
   }
