@@ -1,19 +1,22 @@
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import style from "./Search.module.css";
-import { findedDogs } from "../../Redux/actions"; // Importa la acción directamente desde typeActions.js
+import { Link } from "react-router-dom"; // Importa Link para manejar la redirección
+import { findedDogs } from "../../Redux/actions";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
+
   const handleChange = (event) => {
     setInput(event.target.value);
-    console.log('event', event.target.value)
   };
 
-  useEffect(() => {
-    dispatch(findedDogs(input)); // Llama a la acción 'findedDogs' desde typeActions.js
-  }, [input, dispatch]);
+  const handleSearch = () => {
+    if (input.trim() !== "") {
+      dispatch(findedDogs(input));
+    }
+  };
 
   function resetSelects() {
     let selectElements = document.querySelectorAll("select.reset");
@@ -32,12 +35,18 @@ const SearchBar = () => {
           onChange={handleChange}
           className={style.input}
         />
+        {/* Reemplaza el botón de búsqueda con un enlace (Link) */}
+        {input.trim() !== "" && (
+          <Link to="/detail" onClick={handleSearch}>
+            <button className={style.searchButton}>Search</button>
+          </Link>
+        )}
       </div>
       <button
         className={style.button}
         onClick={() => {
           setInput("");
-          dispatch(findedDogs("")); // Llama a la acción 'findedDogs' con una cadena vacía para borrar la búsqueda
+          dispatch(findedDogs(""));
           resetSelects();
         }}
       >

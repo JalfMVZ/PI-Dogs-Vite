@@ -17,12 +17,13 @@ const Detail = () => {
   return (
     <div className={style.divDetail}>
       <h1>Detalles del perro</h1>
+      <p>ID: {dog ? dog.id : "Cargando..."}</p>
       <img src={dog.image} alt="" />
       <p>Nombre: {dog ? dog.name : "Cargando..."}</p>
-      <p>Temperamento: {dog ? dog.Temperaments : "Cargando..."}</p>
-      <p>ID: {dog ? dog.id : "Cargando..."}</p>
-      <p>Peso: {dog ? dog.weight : "Cargando..."} kg</p>
       <p>Altura: {dog ? dog.height : "Cargando..."} cm</p>
+      <p>Peso: {dog ? dog.weight : "Cargando..."} kg</p>
+      <p>Temperamentos: {dog ? dog.Temperaments : "Cargando..."}</p>
+      <p>Años de vida: {dog ? dog.life_span : "Cargando..."} </p>
     </div>
   );
 };

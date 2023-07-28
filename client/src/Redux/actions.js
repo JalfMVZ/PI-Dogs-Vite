@@ -71,7 +71,7 @@ export const filterBySource = (option) => {
 }
 
 export const orderByName = (option) => {
-    console.log("option",option);
+   
     
     return {type: ORDER_BY_NAME, payload: option}
 }
