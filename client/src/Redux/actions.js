@@ -16,7 +16,7 @@ export const findDogById = (id) => {
     return async (dispatch) => {
       try {
         const response = await axios.get(`http://localhost:3001/dogs/${id}`);
-        if (response.data.id) {
+        if (response.data) {
           return dispatch({ type: FIND_DOG_BY_ID, payload: response.data });
         } else {
           window.alert("Can't find the detail of that dog");

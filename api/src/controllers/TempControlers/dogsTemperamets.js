@@ -9,6 +9,7 @@ const getTemperaments = async () => {
   const dogs = response.data;
  
   const temperaments = dogs.map((dog) => dog.temperament);
+  // console.log('temperamets', temperaments)
   temperaments.forEach((element) => {
     if (element) {
       element.split(",");
@@ -21,14 +22,15 @@ const getTemperaments = async () => {
       //});
     }
   });
-
   const temps = eliminarRepeticionesEnObjeto(temperaments).match(/\b\w+\b/g);
-  console.log(typeof temps);
+ 
+  // console.log(typeof temps);
   for (const temp of temps) {
     await Temperaments.create({ name: temp });
   }
-  console.log(temps);
+
   const allTemperaments = await Temperaments.findAll();
+  console.log('allTemperaments', allTemperaments)
   return allTemperaments;
 };
 

@@ -7,7 +7,6 @@ const initialState = {
   sourceHelper: [],
   nameHelper: [],
   weightHelper: [],
-
   allTemperaments: [],
   change: true,
 };
@@ -25,6 +24,8 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         allDogs: payload,
+        findedDogs: payload,
+        sourceHelper: payload
       };
     case FIND_DOGS:
       return {
@@ -54,15 +55,18 @@ const reducer = (state = initialState, { type, payload }) => {
         change: !state.change,
       };
     case FILTER_BY_SOURCE:
+      const algo = state.allDogs
+      if (payload === "SOURCE") {
+        algo.filter((dog ) => dog.id.length > 4)
+      } else if (payload === "API") {
+        algo.filter((dog) => dog.id.length <= 3)
+      }
       filteredSource = state.sourceHelper.filter(
         (source) => source.created.toString() === payload.toString()
       );
       return {
         ...state,
-        findedDogs: filteredSource,
-        nameHelper: filteredSource,
-        weightHelper: filteredSource,
-        change: !state.change,
+      filteredSource 
       };
     case ORDER_BY_NAME:
       if (payload === "ASCENDENT") {

@@ -19,15 +19,7 @@ const validation = (userData) => {
     if (userData.minWeight > userData.maxWeight) {
         errors.weight = "Min cannot be greater than max."
     }
-    if (userData.minLife && userData.maxLife) {
-        if (userData.minLife >= userData.maxLife) {
-            errors.lifeSpan = "Min cannot be greater than max."
-        }
-    }
-    if (!userData.minLife && !userData.maxLife) {
-        errors.lifeSpan = "You must fill in at least one field."
-    }
-    if (!userData.temperaments) {
+  if (!userData.temperaments) {
         errors.temperaments = "You must select at least one option."
     }
     return errors

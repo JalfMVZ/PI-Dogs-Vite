@@ -1,9 +1,9 @@
-import style from './CreateForm.module.css'
+import style from "./CreateForm.module.css";
 
 export default function Form() {
   return (
     <form className={style.form_container}>
-      <label className={style.name_label} >
+      <label className={style.name_label}>
         Nombre:
         <input type="text" />
       </label>
@@ -15,7 +15,7 @@ export default function Form() {
         Altura mínima:
         <input type="text" />
       </label>
-      <label className={style. weight_max}>
+      <label className={style.weight_max}>
         Peso máximo:
         <input type="text" />
       </label>
@@ -31,11 +31,13 @@ export default function Form() {
         Temperamentos:
         <input type="text" />
       </label>
-      <label className={style. image_container}>
+      <label className={style.image_container}>
         Imagen:
         <input type="text" />
-      </label >
-      <button className={style.btn_container} type="submit">Enviar</button>
+      </label>
+      <button className={style.btn_container} type="submit">
+        Enviar
+      </button>
     </form>
   );
 }

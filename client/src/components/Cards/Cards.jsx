@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const Cards = () => {
   const dogs = useSelector((state) => state.allDogs);
-
+  
   return (
     <div className={style.cardList}>
       {dogs.map((dog) => {

@@ -17,9 +17,9 @@ export default function Home() {
   
   return (
     <div className={style.div}>
-      <Selects/>
       <SearchBar/>
       <Nav/>
+      <Selects/>
       <Cards/>
     </div>
   )

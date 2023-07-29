@@ -8,7 +8,7 @@ const Card = ({ id, name, image, temperaments, weight, height }) => {
         <img src={image} alt={name} />
         <h2>Name: {name}</h2>
       {/* <h2>Weight: {weight}</h2> */}
-        <h2>Height: {height} kg</h2>
+        <h2> Weight: {weight} kg</h2>
         <h3>
           Temperaments:{" "}
           {Array.isArray(temperaments) ? temperaments.join(", ") : temperaments}{" "}
