@@ -29,15 +29,15 @@ const getIdDog = async (req, res) => {
 };
 
 const postDogsHandler = async (req, res) => {
-  const { name, image, temperaments, height, weight, life_span } = req.body;
-  console.log('req.body', req.body); // Verifica que los datos lleguen correctamente
+  const { name, image, temperament, max_height, min_height, min_weight, max_weight, life_span } = req.body;
+  // console.log('req.body', req.body); // Verifica que los datos lleguen correctamente
 
   try {
-    if (!name || !image || !temperaments || !height || !weight || !life_span) {
+    if (!name || !image || !temperament || !max_height || !min_height || !min_weight || !max_weight || !life_span) {
       throw new Error("missing data");
     }
 
-    const newDog = await postDog(name, image, temperaments, height, weight, life_span);
+    const newDog = await postDog(name, image, temperament, max_height, min_height, min_weight, max_weight, life_span);
     res.status(200).json(newDog);
   } catch (error) {
     res.status(404).json({ error: error.message });

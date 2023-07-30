@@ -1,9 +1,9 @@
-import CreateForm from '../../components/CreateForm/CreateForm'
+import Form from '../../components/FormPage/FormPage'
 
-export default function Form() {
+export default function FormCre() {
   return (
     <div>
-      <CreateForm/>
+      <Form/>
     </div>
   )
 }

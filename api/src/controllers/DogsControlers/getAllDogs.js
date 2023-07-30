@@ -24,7 +24,7 @@ const getAllDogs = async () => {
   });
 
   const joinAllDogs = [...fromApiFormate, ...DogDB.map(dog => {
-    const temperaments = dog.Temperaments.map(t => t.name).join(', ');
+    const temperaments = dog.Temperaments.map(t => t.name).join(', '); 
     return {
       ...dog.dataValues,
       Temperaments: temperaments

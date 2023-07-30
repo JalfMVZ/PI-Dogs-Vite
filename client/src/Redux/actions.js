@@ -1,83 +1,113 @@
-import { GET_ALL_DOGS, FIND_DOG_BY_ID, FIND_DOGS, GET_ALL_TEMPERAMENTS, FILTER_BY_TEMPERAMENT, FILTER_BY_SOURCE, ORDER_BY_NAME, ORDER_BY_WEIGHT, ERROR} from "./typeActions";
+import { GET_ALL_DOGS, POST_DOG, FIND_DOG_BY_ID, FIND_DOGS, GET_ALL_TEMPERAMENTS, ERROR,SET_FILTER_BY_SOURCE, SET_ORDER ,SET_FILTER_BY_TEMPERAMENT} from "../Redux/typeActions";
 import axios from "axios"
 
 export const getAllDogs = () => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const response = await axios.get("http://localhost:3001/dogs")
-                return dispatch({type: GET_ALL_DOGS, payload: response.data})
+            return dispatch({ type: GET_ALL_DOGS, payload: response.data })
         } catch (error) {
-            return dispatch({type : ERROR, payload : error})
+            return dispatch({ type: ERROR, payload: error })
         }
     }
 }
 
 export const findDogById = (id) => {
     return async (dispatch) => {
-      try {
-        const response = await axios.get(`http://localhost:3001/dogs/${id}`);
-        if (response.data) {
-          return dispatch({ type: FIND_DOG_BY_ID, payload: response.data });
-        } else {
-          window.alert("Can't find the detail of that dog");
+        try {
+            const response = await axios.get(`http://localhost:3001/dogs/${id}`);
+            if (response.data) {
+                return dispatch({ type: FIND_DOG_BY_ID, payload: response.data });
+            } else {
+                window.alert("Can't find the detail of that dog");
+            }
+        } catch (error) {
+            console.error(error);
+            return dispatch({ type: ERROR, payload: error });
         }
-      } catch (error) {
-        console.error(error);
-        return dispatch({ type: ERROR, payload: error });
-      }
     };
-  };
+};
 
 
 
 export const findedDogs = (name) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const response = await axios.get(`http://localhost:3001/dogs?name=${name}`);
-            if(typeof response.data === "object") {
-                return dispatch({type : FIND_DOGS, payload : response.data})
+            if (typeof response.data === "object") {
+                return dispatch({ type: FIND_DOGS, payload: response.data })
             } else {
-                return dispatch({type : FIND_DOGS, payload : []})
+                return dispatch({ type: FIND_DOGS, payload: [] })
             }
         } catch (error) {
-            return dispatch({type : ERROR, payload : error})
+            return dispatch({ type: ERROR, payload: error })
         }
-        
+
     }
 }
 
 export const getAllTemperaments = () => {
     console.log('vamo a ver');
-    
-    return async(dispatch) => {
+
+    return async (dispatch) => {
         try {
             const response = await axios.get("http://localhost:3001/temperaments")
-            console.log('resTemp', response.data);
             
-            return dispatch({type : GET_ALL_TEMPERAMENTS, payload : response.data})
+
+            return dispatch({ type: GET_ALL_TEMPERAMENTS, payload: response.data })
         } catch (error) {
-            return dispatch({type : ERROR, payload : error})
+            return dispatch({ type: ERROR, payload: error })
         }
     }
 }
 
-export const filterByTemperament = (option) => {
-    
-    return {type: FILTER_BY_TEMPERAMENT, payload: option}
+
+export const cleanDetail = () => {
+    return { type: "CLEAN_DETAIL" };
+};
+
+export const postDog = (form) => {
+    return async function (dispatch) {
+        try {
+            const response = await axios.post("http://localhost:3001/dogs", form);
+            console.log('response', response)
+            dispatch({ type: POST_DOG, payload: response.data });
+            return response;
+        } catch (error) {
+            alert(error.response.data.error);
+        }
+    };
+};
+
+
+// export const getAllDogsFilters = (temperament, source, name, weight) => {
+//     return async () => {
+//         const response = await axios.get("http://localhost:3001/dogs")
+        
+
+//         if (temperament && !source && !name && !weight) {
+//             let filteredTemps = response.data.filter(
+
+//                 (temp) => temp.temperament && temp.temperament.includes(payload)
+//             );
+//         }
+//     }
+
+// }
+
+
+export const setfilterByTemperament = (option) => {
+
+    return { type: SET_FILTER_BY_TEMPERAMENT, payload: option }
 }
 
-export const filterBySource = (option) => {
-    return {type: FILTER_BY_SOURCE, payload: option}
+export const setfilterBySource = (option) => {
+    return { type: SET_FILTER_BY_SOURCE, payload: option }
 }
 
-export const orderByName = (option) => {
-   
-    
-    return {type: ORDER_BY_NAME, payload: option}
-}
 
-export const orderByWeight = (option) => {
+export const setOrder= (option) => {
     console.log('action', option);
-    
-    return {type: ORDER_BY_WEIGHT, payload: option}
+
+    return { type: SET_ORDER, payload: option }
 }
