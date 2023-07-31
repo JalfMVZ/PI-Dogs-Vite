@@ -32,6 +32,22 @@ const getAllDogs = async () => {
   })];
 
   return joinAllDogs;
+
+//pg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };
 
 module.exports = {

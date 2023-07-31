@@ -1,54 +1,46 @@
 import style from "./Paginated.module.css";
 
-const Paginado = ({
-  dogsPerPage,
-  allDogs,
-  paginado,
-  currentPage,
-  setCurrentPage,
-}) => {
-  const pageNumbers = [];
+export default function Paginado({ thisPage, totalPages, pageChange }) {
+  const handlerPrePages = () => {
+    if (thisPage > 1) {
+      pageChange(thisPage - 1);
+    }
+  };
+  const handlerNextPages = () => {
+    if (thisPage < totalPages) {
+      pageChange(thisPage + 1);
+    }
+  };
+  const handlerPagesOnClick = (page) => {
+    pageChange(page);
+  };
+  const visiblePageCount = 9;
+  const startPage = Math.max(1, thisPage - Math.floor(visiblePageCount / 2));
+  const endPage = Math.min(startPage + visiblePageCount - 1, totalPages);
 
-  for (let i = 1; i <= Math.ceil(allDogs / dogsPerPage); i++) {
-    pageNumbers.push(i);
-  } 
-
-  function handlePrev() {
-    setCurrentPage((currentPage) =>
-      currentPage > 1 ? currentPage - 1 : currentPage
-    );
-  }
-
-  function handleNext() {
-    setCurrentPage((currentPage) =>
-      currentPage < pageNumbers.length ? currentPage + 1 : currentPage
-    );
-  }
+  const showPrevButton = thisPage > 1;
+  const showNextButton = thisPage < totalPages;
 
   return (
-    <nav className={style.containerPaginado}>
-      <div></div>
-      <ul className={style.containerLi}>
-        {pageNumbers &&
-          pageNumbers.map((number) => {
-            return (
-              <li className={style.boxLi} key={number}>
-                <button
-                  onClick={() => paginado(number)}
-                  className={style.button}
-                >
-                  {number}
-                </button>
-              </li>
-            );
-          })}
-      </ul>
-      <div className={style.containerButtons}>
-        <a onClick={handlePrev} className={style.imgButton}></a>
-        <a onClick={handleNext} className={style.imgButton}></a>
-      </div>
-    </nav>
+    <div className={style.pagDiv}>
+      {showPrevButton && <button onClick={handlerPrePages }>Previous</button>}
+      {Array.from(
+        { length: endPage - startPage + 1 },
+        (_, index) => startPage + index
+      ).map((page) => (
+        <button
+          key={page}
+          onClick={() => handlerPagesOnClick(page)}
+          disabled={thisPage === page}
+        >
+          {page}
+        </button>
+      ))}
+      {showNextButton && (
+        <button onClick={handlerNextPages} className={style.pag}>
+          Next
+        </button>
+      )}
+    </div>
   );
-};
-
-export default Paginado;
+}

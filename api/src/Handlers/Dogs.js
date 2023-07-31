@@ -2,13 +2,27 @@ const { getAllDogs } = require("../controllers/DogsControlers/getAllDogs")
 const { getDogById } = require("../controllers/DogsControlers/getDogByID")
 const { getDogByName } = require("../controllers/DogsControlers/getDogByName");
 const { postDog } = require("../controllers/DogsControlers/postDog");
+const { filterDog } = require("../controllers/DogsControlers/filtersDog")
+
 
 
 const getDogsHandler = async (req, res) => {
-  const { name } = req.query;
+
+  const { name, temp } = req.query;
   try {
-    const allDogs = name ? await getDogByName(name) : await getAllDogs();
-    return res.status(200).json(allDogs);
+    
+    if (name) {
+      const dogs = await getDogByName(name) 
+      return res.status(200).json(dogs);
+    }
+    let dogs = await getAllDogs();
+    if (temp) {
+     dogs = await filterDog(temp,dogs)
+
+
+    }
+
+    return res.status(200).json(dogs);
   } catch (error) {
     res.status(404).json({ error: "No hay perros" });
   }

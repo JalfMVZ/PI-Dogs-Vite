@@ -4,7 +4,7 @@ const { Temperaments } = require("../../db");
 // Importar la biblioteca Axios para realizar solicitudes HTTP
 const axios = require("axios");
 
-// Definir una función asincrónica llamada getTemperaments
+// Definir una función asincrónica llamada getTemperaments 
 const getTemperaments = async () => {
 
   // Realizar una solicitud HTTP GET a la API de perros y guardar la respuesta en 'response'

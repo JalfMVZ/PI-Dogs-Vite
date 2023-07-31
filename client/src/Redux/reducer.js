@@ -1,13 +1,18 @@
-import { GET_ALL_DOGS,POST_DOG, FIND_DOG_BY_ID, FIND_DOGS, GET_ALL_TEMPERAMENTS,SET_FILTER_BY_TEMPERAMENT, SET_FILTER_BY_SOURCE, SET_ORDER, COMBINED_FILTERS } from "../Redux/typeActions"
+import { GET_ALL_DOGS,POST_DOG, FIND_DOG_BY_ID, FIND_DOGS, GET_ALL_TEMPERAMENTS, SET_PAGE } from "../redux/typeActions"
 // 
 
 const initialState = {
   allDogs: [],
   allTemperaments: [],
-  filtertemp: "",
-  filtersource: "",
-  filteroder: "",
-  change: true,
+  pagination: {
+    thisPage: 1,
+    totalPage: 0,
+    totalItems: 0,
+    itemsPerPage: 8,
+    currentPageItems: []
+  }
+  
+  
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -39,26 +44,11 @@ const reducer = (state = initialState, { type, payload }) => {
           ...state,
         allDogs: payload,
         }
-        case SET_FILTER_BY_TEMPERAMENT:
-          return{
+        case SET_PAGE:
+          return {
             ...state,
-            filtertemp: payload,
-          }
-          case SET_FILTER_BY_SOURCE:
-            return {
-              ...state,
-              filtersource: payload,
-            }
-            case SET_ORDER: 
-            return {
-              ...state,
-              filteroder: payload,
-            }
-            case COMBINED_FILTERS:
-              return{
-                ...state,
-                allDogs: payload,
-              }
+            pagination: { ...state.pagination, thisPage: payload },
+          };
           
     default:
       return state;

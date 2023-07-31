@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS, POST_DOG, FIND_DOG_BY_ID, FIND_DOGS, GET_ALL_TEMPERAMENTS, ERROR,SET_FILTER_BY_SOURCE, SET_ORDER ,SET_FILTER_BY_TEMPERAMENT} from "../Redux/typeActions";
+import { GET_ALL_DOGS, POST_DOG, FIND_DOG_BY_ID, FIND_DOGS, GET_ALL_TEMPERAMENTS,  SET_PAGE,ERROR} from "../redux/typeActions";
 import axios from "axios"
 
 export const getAllDogs = () => {
@@ -80,6 +80,13 @@ export const postDog = (form) => {
 };
 
 
+
+  export const setPage = (page) => ({
+    type: SET_PAGE,
+    payload: page,
+  });
+
+
 // export const getAllDogsFilters = (temperament, source, name, weight) => {
 //     return async () => {
 //         const response = await axios.get("http://localhost:3001/dogs")
@@ -94,20 +101,3 @@ export const postDog = (form) => {
 //     }
 
 // }
-
-
-export const setfilterByTemperament = (option) => {
-
-    return { type: SET_FILTER_BY_TEMPERAMENT, payload: option }
-}
-
-export const setfilterBySource = (option) => {
-    return { type: SET_FILTER_BY_SOURCE, payload: option }
-}
-
-
-export const setOrder= (option) => {
-    console.log('action', option);
-
-    return { type: SET_ORDER, payload: option }
-}
