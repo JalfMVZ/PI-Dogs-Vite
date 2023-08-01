@@ -1,27 +1,24 @@
-import style from './Home.module.css'
-
-import Cards from '../../components/Cards/Cards'
-import SearchBar from '../../components/SearchBar/Search'
-
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import {getAllDogs} from '../../Redux/actions'
-
+import style from "./Home.module.css";
+import Cards from "../../components/Cards/Cards";
+import SearchBar from "../../components/SearchBar/Search";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getAllDogs } from "../../redux/actions";
+// import Pagination from "../../components/Paginado/Paginado";
 
 export default function Home() {
+  const dispach = useDispatch();
+  useEffect(() => {
+    dispach(getAllDogs());
+  }, [dispach]);
 
-  const dispach = useDispatch()
-  useEffect(()=>{
-    dispach(getAllDogs())
-  } ,[dispach])
-  
   return (
     <div className={style.div}>
-      <SearchBar/>
-     
-      <Cards/>
+      <SearchBar />
+      <Cards />
+      {/* <Pagination /> */}
     </div>
-  )
+  );
 }
 
 // import style from "./Home.module.css";
@@ -40,11 +37,11 @@ export default function Home() {
 // const Home = () => {
 //   const dispatch = useDispatch();
 
-  // const order = useSelector((state) => state.order);
-  // const filterContinent = useSelector((state) => state.filterContinent);
-  // const filterActivity = useSelector((state) => state.filterActivity);
+// const order = useSelector((state) => state.order);
+// const filterContinent = useSelector((state) => state.filterContinent);
+// const filterActivity = useSelector((state) => state.filterActivity);
 //   const countries = useSelector((state) => state.countries);
-  // const activities = useSelector((state) => state.activities);
+// const activities = useSelector((state) => state.activities);
 
 //   const [currentPage, setCurrentPage] = useState(1);
 //   const [dogsPerPage, setDogsPerPage] = useState(8);

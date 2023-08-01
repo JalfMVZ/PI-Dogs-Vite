@@ -32,8 +32,10 @@ const filterData = (dog) => {
     name: dog.name,
     image: dog.image.url,
     Temperaments: dog.temperament,
-    height: dog.height.metric,
-    weight: dog.weight.metric,
+    min_height: parseInt(dog.height.metric.split("-")[0]),
+    max_height: parseInt(dog.height.metric.split("-")[1]),
+    min_weight: parseInt(dog.weight.metric.split("-")[0]),
+    max_weight: parseInt(dog.weight.metric.split("-")[1]),
     life_span: dog.life_span,
   };
   return dogFormat;

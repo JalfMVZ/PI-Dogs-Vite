@@ -1,0 +1,7 @@
+.cardsCont {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  margin: 0 auto;
+  row-gap: 30px;
+  column-gap: 30px;
+}

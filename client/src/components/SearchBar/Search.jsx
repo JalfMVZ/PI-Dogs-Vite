@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import style from "./Search.module.css";
 import { Link } from "react-router-dom"; // Importa Link para manejar la redirección
-import { findedDogs } from "../../Redux/actions";
+import { findedDogs } from "../../redux/actions";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
@@ -37,7 +37,7 @@ const SearchBar = () => {
         />
         {/* Reemplaza el botón de búsqueda con un enlace (Link) */}
         {input.trim() !== "" && (
-          <Link to="/detail/1" onClick={handleSearch}>
+          <Link to="/detail" onClick={handleSearch}>
             <button className={style.searchButton}>Search</button>
           </Link>
         )}

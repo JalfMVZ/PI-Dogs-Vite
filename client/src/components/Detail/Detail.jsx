@@ -13,11 +13,16 @@ const Detail = () => {
       if (data.id) {
         setDog(data);
       } else {
-        window.alert("Cant find the detail of that country");
+        window.alert("Cant find the detail of dogs");
       }
     });
     return setDog({});
   }, [id]); // No olvidarse del ID porque genera un loop donde la API te banea
+
+if (!dog) {
+  <p>Loading...</p>
+  
+}
 
   return (
     <div className={style.divDetail}>
@@ -25,8 +30,10 @@ const Detail = () => {
       <p>ID: {dog ? dog.id : "Cargando..."}</p>
       <img src={dog.image} alt="" />
       <p>Nombre: {dog ? dog.name : "Cargando..."}</p>
-      <p>Altura: {dog ? dog.height : "Cargando..."} cm</p>
-      <p>Peso: {dog ? dog.weight : "Cargando..."} kg</p>
+      <p>Max Altura: {dog ? dog.max_height : "Cargando..."} </p>
+      <p>Min Altura: {dog ? dog.min_height : "Cargando..."} </p>
+      <p>Max Peso: {dog ? dog.max_weight : "Cargando..."} </p>
+      <p>Min Peso: {dog ? dog.min_weight : "Cargando..."} </p>
       <p>Temperamentos: {dog ? dog.Temperaments : "Cargando..."}</p>
       <p>Años de vida: {dog ? dog.life_span : "Cargando..."} </p>
       <NavLink to="/home">

@@ -5,11 +5,14 @@ import { useEffect, useState } from "react";
 import Paginado from "../Paginado/Paginado";
 import { useLocation } from "react-router-dom";
 import { getAllTemperaments, setPage } from "../../redux/actions";
+import style from './Cards.module.css'
 
 const Cards = () => {
   const temps = useSelector((state) => state.allTemperaments);
   const dogs = useSelector((state) => state.allDogs);
   const pag = useSelector((state) => state.pagination);
+  
+
 
   const [selecTemps, setSelecTemps] = useState(""); // se usa para el filtro de temperamentos
   const [sourceDogs, setSourceDogs] = useState(""); // API O DB
@@ -125,7 +128,7 @@ const Cards = () => {
           </select>
         )}
       </div>
-      <div>
+      <div className={style.cardsCont}>
         {thisPageDogs && thisPageDogs.length > 0 ? (
           thisPageDogs.map((dog) => {
             return (
@@ -134,8 +137,8 @@ const Cards = () => {
                 id={dog?.id}
                 name={dog?.name}
                 image={dog?.image}
-                weight={dog?.weight}
-                height={dog?.height}
+                maxPeso={dog?.max_weight}
+                minPeso={dog?.min_weight}
                 Temperaments={dog?.Temperaments}
                 fromApi={dog.fromApi ? true : false}
               />
