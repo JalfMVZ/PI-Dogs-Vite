@@ -1,9 +1,11 @@
 .App {
   text-align: center;
-  background: rgb(36, 41, 108);
+  /* background: rgb(36, 41, 108);
   background: linear-gradient(
     309deg,
     rgba(36, 41, 108, 1) 36%,
     rgba(124, 106, 194, 1) 78%
-  );
+  ); */
+
+  background-image: url("https://cdn.discordapp.com/attachments/1113254252656201728/1136146876488486952/image.png");
 }

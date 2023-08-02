@@ -111,6 +111,21 @@
 }
 
 
+/* Style.css or your preferred stylesheet */
+.imageContainer {
+  width: 300px; /* Establece el ancho deseado para todas las imágenes */
+  height: 200px; /* Establece la altura deseada para todas las imágenes */
+  overflow: hidden; /* Para recortar las imágenes si son más grandes que el contenedor */
+}
+
+.imageInput {
+  width: 100%; /* Asegura que la imagen se ajuste al ancho del contenedor */
+  height: 100%; /* Asegura que la imagen se ajuste al alto del contenedor */
+  object-fit: cover; /* Ajusta la imagen manteniendo su relación de aspecto */
+}
+
+
+
 @media (max-width: 480px) {
   .formContainer {
     max-width: 100%;

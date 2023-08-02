@@ -18,8 +18,8 @@ select {
   background-color: #fff; /* Color de fondo del select */
   color: #333; /* Color del texto del select */
   cursor: pointer;
-  appearance: none; /* Elimina el estilo nativo del select en algunos navegadores */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Animación de transición */
+  appearance: none; 
+  transition: background-color 0.3s ease, color 0.3s ease; 
   margin: 20px;
 }
 
@@ -32,43 +32,43 @@ select::after {
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  pointer-events: none; /* Evita que el pseudo-elemento interfiera con el clic */
+  pointer-events: none; 
 }
 
-/* Estilo para las opciones dentro del select */
+
 select option {
   padding: 8px;
 }
 
-/* Estilo para los selects cuando están enfocados */
+
 select:focus {
-  outline: none; /* Elimina el contorno predeterminado del foco */
-  box-shadow: 0 0 4px #007bff; /* Agrega un sombreado azul al estar enfocado */
+  outline: none; 
+  box-shadow: 0 0 4px #007bff; 
 }
 
-/* Cambia el color de fondo y texto de las opciones al pasar el mouse */
+
 select option:hover {
   background-color: #007bff;
   color: #fff;
 }
 
-/* Cambia el color de fondo y texto de las opciones seleccionadas */
+
 select option:checked {
   background-color: #0056b3;
   color: #fff;
 }
 
-/* Estilo para los selects cuando están deshabilitados */
+
 select:disabled {
-  opacity: 0.6; /* Reduce la opacidad de los selects deshabilitados */
-  cursor: not-allowed; /* Cambia el cursor para indicar que el select está deshabilitado */
+  opacity: 0.6; 
+  cursor: not-allowed; 
 }
 
-/* Animación de despliegue de las opciones */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-5px); /* Desplazamiento hacia arriba para ocultar opciones */
+    transform: translateY(-5px); 
   }
   to {
     opacity: 1;
@@ -76,24 +76,24 @@ select:disabled {
   }
 }
 
-/* Estilo para el contenedor del desplegable */
+
 .selectOptionsContainer {
   position: absolute;
-  top: calc(100% + 5px); /* Alinea el desplegable debajo del select */
+  top: calc(100% + 5px); 
   left: 0;
   width: 100%;
   max-height: 150px;
-  overflow-y: auto; /* Permite el desplazamiento si el contenido supera la altura */
+  overflow-y: auto; 
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1; /* Coloca el desplegable por encima del resto de elementos */
-  display: none; /* Inicialmente oculta el desplegable */
-  animation: fadeIn 0.3s ease; /* Animación de despliegue */
+  z-index: 1; 
+  display: none; 
+  animation: fadeIn 0.3s ease; 
 }
 
-/* Mostrar el desplegable cuando el select está enfocado o el mouse pasa por encima */
+
 .selectContainer:hover .selectOptionsContainer,
 .selectContainer:focus-within .selectOptionsContainer {
   display: block;

@@ -244,13 +244,13 @@ const Form = () => {
         !form.image ? (
           <div className={Style.containerTemperamentsNone}></div>
         ) : (
-          <div>
-            <img src={form.image} alt={form.name} />
+          <div className={Style.imageContainer}>
+            <img src={form.image} alt={form.name} className={Style.imageInput}/>
           </div>
         )}
 
         <button disabled={isSubmitDisabled}>Submit</button>
-      </form>
+      </form> 
       <h2>Temperaments</h2>
       {form.temperament.map((element) => {
         return (
