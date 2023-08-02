@@ -20,6 +20,7 @@ const getDogById = async (id) => {
     where: {
       id: id,
     },
+    attributes: ['id', 'name', 'image', 'min_height', 'max_height', 'min_weight', 'max_weight', 'life_span'], 
     include: [{
       model: Temperaments,
       attributes: ['name'],
@@ -28,31 +29,19 @@ const getDogById = async (id) => {
       }
     }]
   });
-
   if (dbDogsRauw !== undefined) {
-    const dog = dbDogsRauw[0];
-
-    // Separar el campo height en min y max
-    const [minHeight, maxHeight] = dog.height.split(' - ');
-
-    // Separar el campo weight en min y max
-    const [minWeight, maxWeight] = dog.weight.split(' - ');
-
-    // Aquí, puedes incluir la lógica para formatear los temperamentos como se hizo anteriormente
+    const dog = dbDogsRauw[0].dataValues; // Aquí obtenemos los valores de los datos
+    // Entre ellos deberías tener min_height, max_height...
     const temperaments = dog.Temperaments.map((dog) => dog.name).join(", ");
-
     return {
-      ...dog.dataValues,
-      min_height: parseInt(minHeight),
-      max_height: parseInt(maxHeight),
-      min_weight: parseInt(minWeight),
-      max_weight: parseInt(maxWeight),
+      ...dog, 
       Temperaments: temperaments,
     };
+  
   } else {
     throw new Error("oh no");
   }
-};
+}  
 
 module.exports = {
   getDogById,

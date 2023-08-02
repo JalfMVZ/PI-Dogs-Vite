@@ -66,18 +66,27 @@ export const cleanDetail = () => {
     return { type: "CLEAN_DETAIL" };
 };
 
-export const postDog = (form) => {
+export const postDog = (props) => {
     return async function (dispatch) {
-        try {
-            const response = await axios.post("http://localhost:3001/dogs", form);
-            console.log('response', response)
-            dispatch({ type: POST_DOG, payload: response.data });
-            return response;
-        } catch (error) {
-            alert(error.response.data.error);
-        }
+      try {
+        console.log(props.temperament);
+        const response = await axios.post("http://localhost:3001/dogs", {
+            name: props.name,
+            image: props.image,
+            temperaments: props.temperament,
+            max_height: props.max_height,
+            min_height: props.min_height,
+            max_weight: props.max_weight,
+            min_weight: props.min_weight,
+            life_span: props.life_span,
+        });
+        dispatch({ type: POST_DOG, payload: response.data });
+        return response;
+      } catch (error) {
+        alert(error.response.data.error);
+      }
     };
-};
+  };
 
 
 

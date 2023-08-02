@@ -32,20 +32,12 @@ const getAllDogs = async () => {
   // Combina los datos formateados de la API con los datos de la base de datos
   const joinAllDogs = [...fromApiFormate, ...DogDB.map(dog => {
     const temperaments = dog.Temperaments.map(t => t.name).join(', '); // Obtiene los nombres de los temperamentos asociados al perro y los une en una cadena
-    const [minHeight, maxHeight] = dog.height.split(' - ');
-    // Separar el campo weight en min y max
-    const [minWeight, maxWeight] = dog.weight.split(' - ');
-
     return {
       ...dog.dataValues,
 
-      min_height: parseInt(minHeight), // Usar la propiedad min del objeto height
-      max_height: parseInt(maxHeight), // Usar la propiedad max del objeto height
-      min_weight: parseInt(minWeight), // Usar la propiedad min del objeto weight
-      max_weight: parseInt(maxWeight), // Usar la propiedad max del objeto weight
+
       Temperaments: temperaments, // Agrega la cadena de nombres de temperamentos al objeto del perro
     };
-
   })];
 
   return joinAllDogs; // Devuelve la lista combinada de perros con sus temperamentos

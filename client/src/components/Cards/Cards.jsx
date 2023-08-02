@@ -104,14 +104,14 @@ const Cards = () => {
   return (
     <div>
       <div>
-        <select onChange={handleOrderChange}>
+      <select onChange={handleOrderChange} className={style.select}>
           <option value="default">Default</option>
           <option value="A">A-Z Abc</option>
           <option value="Z">Z-A Abc</option>
           <option value="MAX">Max to Min Weight</option>
           <option value="MIN">Min to Max Weight</option>
         </select>
-        <select value={sourceDogs} onChange={handleChange}>
+        <select value={sourceDogs} onChange={handleChange} className={style.select}>
           <option value="ALL">All</option>
           <option value="API">Api</option>
           <option value="DB">Created by User</option>

@@ -1,35 +1,63 @@
-.container {
+.navCont {
   display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
-.buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.buttonContainer {
-  background-color: #862ad7;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px 20px;
   border-radius: 5px;
-  overflow: hidden;
+  border-color: 2px black solid;
 }
 
-.button {
-  display: block;
-  padding: 8px 15px;
-  font-size: 16px;
-  color: black;
+/* General styles for the links */
+.navLink {
   text-decoration: none;
-  transition: background-color 0.3s, color 0.3s;
+  color: #333;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.5s ease;
+  transition: .3s;
 }
 
-.button:hover {
-  background-color: #9a38ea;
+/* Styles for the second link (CREATE) */
+.navLink:last-child {
+  background-color: #007bff;
   color: #fff;
 }
 
-.button.active {
-  background-color: #0056b3;
+/* Hover effect for both links */
+.navLink:hover {
+  background-color: #007bff;
   color: #fff;
+  transform: scale(.8);
+}
+
+/* Active link style */
+.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Minimalist styles inspired by dogs */
+.navCont {
+  background-color: #f8f8f8; /* Light gray background */
+}
+
+.navLink {
+  color: #333; /* Dark gray text color */
+  padding: 10px 15px; /* Slightly larger padding */
+}
+
+.navLink:last-child {
+  background-color: #3f51b5; /* Blue color for CREATE link */
+}
+
+.navLink:hover {
+  background-color: #3f51b5; /* Darker blue color on hover */
+  color: #fff; /* White text color on hover */
+}
+
+.active {
+  background-color: #3f51b5; /* Blue color for active link */
+  color: #fff; /* White text color for active link */
 }

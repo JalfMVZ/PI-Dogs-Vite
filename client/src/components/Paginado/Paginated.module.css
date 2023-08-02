@@ -1,7 +1,46 @@
-.pagDiv{
+.pagDiv {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     justify-content: center;
     align-items: center;
-}
+   
+  }
+  
+  .pagDiv button {
+    padding: 8px 12px;
+    background-color: #f8f8f8; 
+    color: #333; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    border: none;
+  }
+  
+  .pagDiv button:hover {
+    background-color: #0b104b; 
+    color: #fff; 
+  }
+  
+  .pagDiv button:disabled {
+    opacity: 0.6; 
+    cursor: not-allowed; 
+  }
+  
+  .pagDiv .pag {
+    font-weight: bold; 
+  }
+  
+
+  .pagDiv .pag:first-child,
+  .pagDiv .pag:last-child {
+    background-color: #0b104b; 
+    color: #fff; 
+  }
+  
+  .pagDiv .pag:first-child:hover,
+  .pagDiv .pag:last-child:hover {
+    background-color: #0b104b;
+  }
+  

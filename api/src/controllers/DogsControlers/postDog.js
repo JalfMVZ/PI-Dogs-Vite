@@ -1,32 +1,31 @@
-const { Dog, Temperaments } = require("../../db"); // Importa los modelos Dog y Temperaments de la base de datos
+const { Dog } = require("../../db");
 
-const postDog = async (name, imageUrl, temperaments, max_height, min_height, min_weight, max_weight, life_span) => {
-  // Crea un rango de altura y peso a partir de los valores mínimos y máximos proporcionados
-  const height = `${min_height} - ${max_height}`;
-  const weight = `${min_weight} - ${max_weight}`;
+const postDog = async ({
+  name,
+  image,
+  temperaments,
+  max_height,
+  min_height,
+  max_weight,
+  min_weight,
+  life_span,
+}) => {
+  const found = await Dog.findOne({ where: { name } });
 
-  let arrDB = [];
-  // Para cada temperamento proporcionado, busca el temperamento en la base de datos y almacena el resultado en arrDB
-  for (const temp of temperaments) {
-    const sergio = await Temperaments.findOne({ where: { name: temp } });
-    arrDB.push(sergio);
-  }
+  if (found) throw new Error("This breed already exists");
 
-  // Crea un nuevo registro de raza de perro en la base de datos con los datos proporcionados
   const newDog = await Dog.create({
-    name: name,
-    height: height,
-    weight: weight,
-    life_span: life_span,
-    image: imageUrl,
+    name,
+    max_height,
+    min_height,
+    max_weight,
+    min_weight,
+    life_span,
+    image,
+    temperaments,
   });
-
-  // Asocia los temperamentos encontrados (almacenados en arrDB) con el nuevo registro de raza de perro
-  newDog.addTemperaments(arrDB);
-
-  return newDog; // Devuelve el nuevo registro de raza de perro creado
+  await newDog.addTemperaments(temperaments);
+  return newDog;
 };
+module.exports = { postDog };
 
-module.exports = {
-  postDog,
-};

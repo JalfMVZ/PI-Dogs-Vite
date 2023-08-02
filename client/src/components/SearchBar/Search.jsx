@@ -1,60 +1,52 @@
-import { useDispatch } from "react-redux";
 import { useState } from "react";
-import style from "./Search.module.css";
-import { Link } from "react-router-dom"; // Importa Link para manejar la redirección
+import { useDispatch } from "react-redux";
 import { findedDogs } from "../../redux/actions";
+import style from './Search.module.css'
 
-const SearchBar = () => {
-  const [input, setInput] = useState("");
+export default function SearchBar() {
   const dispatch = useDispatch();
+  const [dog, setDog] = useState("");
 
   const handleChange = (event) => {
-    setInput(event.target.value);
+    const value = event.target.value;
+    setDog(value); // Eliminamos el return innecesario
   };
 
-  const handleSearch = () => {
-    if (input.trim() !== "") {
-      dispatch(findedDogs(input));
-    }
+  const handleSubmit = () => {
+    dispatch(findedDogs(dog));
+    setDog("");
   };
 
-  function resetSelects() {
-    let selectElements = document.querySelectorAll("select.reset");
-    selectElements.forEach((selectElement) => {
-      selectElement.selectedIndex = 0;
-    });
-  }
+  const handleClear = () => {
+    setDog("");
+  };
+
+  // Creamos una variable para manejar la visibilidad del botón de búsqueda
+  const showSearchButton = dog.trim() !== "";
 
   return (
     <div className={style.container}>
-      <div className={style.inputContainer}>
-        <input
-          type="search"
-          placeholder="Search by breed"
-          value={input}
-          onChange={handleChange}
-          className={style.input}
-        />
-        {/* Reemplaza el botón de búsqueda con un enlace (Link) */}
-        {input.trim() !== "" && (
-          <Link to="/detail" onClick={handleSearch}>
-            <button className={style.searchButton}>Search</button>
-          </Link>
-        )}
-      </div>
-      <button
-        className={style.button}
-        onClick={() => {
-          setInput("");
-          dispatch(findedDogs(""));
-          resetSelects();
-        }}
-      >
-        CLEAR ALL
-      </button>
-      <div></div>
+    <div className={style.inputContainer}>
+      <input
+        type="search"
+        placeholder="Search..."
+        value={dog}
+        onChange={handleChange}
+        className={style.input}
+      />
+      {/* Mostramos el botón de búsqueda solo cuando se ha ingresado algo */}
+      {showSearchButton && (
+        <button className={style.searchButton} onClick={handleSubmit}>
+          Search
+        </button>
+      )}
+      {/* Mostramos el botón de limpiar solo cuando hay algo escrito */}
+      {dog.trim() !== "" && (
+        <button className={style.buttonClear} onClick={handleClear}>
+          Clear
+        </button>
+      )}
+    </div>
     </div>
   );
-};
-
-export default SearchBar;
+}

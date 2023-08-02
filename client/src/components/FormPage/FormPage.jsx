@@ -66,7 +66,7 @@ const Form = () => {
         min_height: "",
         max_weight: "",
         min_weight: "",
-        lifeYears: "",
+        life_span: "",
         temperament: [],
         image: "",
       });
@@ -79,7 +79,7 @@ const Form = () => {
     return temperament[0].name;
   };
   return (
-    <div>
+    <div className={Style.formContainer}>
       <form onSubmit={SubmitHandler}>
         <h1>Create your breed dog</h1>
         <div className={Style.divInput}>
@@ -254,9 +254,9 @@ const Form = () => {
       <h2>Temperaments</h2>
       {form.temperament.map((element) => {
         return (
-          <div key={element}>
+          <div className={Style.temperament} key={element}>
             <p>{getTemperamentName(element)}</p>
-            <button onClick={() => handleDelete(element)}>X</button>
+            <button className={Style.deleteButton}  onClick={() => handleDelete(element)}>x</button>
           </div>
         );
       })}

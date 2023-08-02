@@ -1,6 +1,6 @@
 import style from "./Home.module.css";
 import Cards from "../../components/Cards/Cards";
-import SearchBar from "../../components/SearchBar/Search";
+// import SearchBar from "../../components/SearchBar/Search";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllDogs } from "../../redux/actions";
@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <div className={style.div}>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <Cards />
       {/* <Pagination /> */}
     </div>

@@ -69,10 +69,10 @@ const validate = (dogData) => {
     if (!dogData.life_span)
       errors.life_span = "The life years of the dog cannot be null";
   }
-  if (dogData.temperament) {
-    if (dogData.temperament.length === 0) errors.temperament = "";
+  if (dogData.temperaments) {
+    if (dogData.temperaments.length === 0) errors.temperaments = "";
     else {
-      errors.temperament = "";
+      errors.temperaments = "";
     }
   }
 

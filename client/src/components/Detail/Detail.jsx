@@ -13,16 +13,11 @@ const Detail = () => {
       if (data.id) {
         setDog(data);
       } else {
-        window.alert("Cant find the detail of dogs");
+        window.alert("Cant find the detail of that dog");
       }
     });
     return setDog({});
   }, [id]); // No olvidarse del ID porque genera un loop donde la API te banea
-
-if (!dog) {
-  <p>Loading...</p>
-  
-}
 
   return (
     <div className={style.divDetail}>
@@ -44,5 +39,4 @@ if (!dog) {
 };
 
 export default Detail;
-
 
