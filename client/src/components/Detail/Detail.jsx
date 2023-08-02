@@ -31,9 +31,6 @@ const Detail = () => {
       <p>Min Peso: {dog ? dog.min_weight : "Cargando..."} </p>
       <p>Temperamentos: {dog ? dog.Temperaments : "Cargando..."}</p>
       <p>Años de vida: {dog ? dog.life_span : "Cargando..."} </p>
-      <NavLink to="/home">
-        <button>GO TO HOME</button>
-      </NavLink>
     </div>
   );
 };

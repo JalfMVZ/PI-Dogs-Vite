@@ -2,17 +2,17 @@ const validate = (dogData) => {
   const errors = {};
 
   if (dogData.name) {
-    if (!/^[a-z]+$/.test(dogData.name))
-      errors.name = "Writing lowercase letters";
+    if (!/^[A-Za-z\s]+$/.test(dogData.name))
+      errors.name = "Writing letters and spaces only";
     else errors.name = "";
   } else {
     if (!dogData.name) errors.name = "The name of the dog cannot be null";
   }
 
   if (dogData.max_height) {
-    if (!/^[0-9]+$/.test(dogData.max_height))
-      errors.max_height = "Write only numbers ";
-    else if (parseInt(dogData.max_height <= 0))
+    if (!/^[0-9A-Za-z\s]+$/.test(dogData.max_height))
+      errors.max_height = "Write only numbers, uppercase letters, and spaces";
+    else if (parseInt(dogData.max_height) <= 0)
       errors.max_height = "Max-height cannot be less than or equal to 0";
     else errors.max_height = "";
   } else {
@@ -21,8 +21,8 @@ const validate = (dogData) => {
   }
 
   if (dogData.min_height) {
-    if (!/^[0-9]+$/.test(dogData.min_height))
-      errors.min_height = "Write only numbers ";
+    if (!/^[0-9A-Za-z\s]+$/.test(dogData.min_height))
+      errors.min_height = "Write only numbers, uppercase letters, and spaces";
     else if (parseInt(dogData.min_height) >= parseInt(dogData.max_height))
       errors.min_height =
         "Min-height cannot be greater than or equal to max-height ";
@@ -35,8 +35,8 @@ const validate = (dogData) => {
   }
 
   if (dogData.max_weight) {
-    if (!/^[0-9]+$/.test(dogData.max_weight))
-      errors.max_weight = "Write only numbers ";
+    if (!/^[0-9A-Za-z\s]+$/.test(dogData.max_weight))
+      errors.max_weight = "Write only numbers, uppercase letters, and spaces";
     else if (parseInt(dogData.max_weight) <= 0)
       errors.max_weight = "Max-Weight cannot be less than or equal to 0";
     else errors.max_weight = "";
@@ -46,8 +46,8 @@ const validate = (dogData) => {
   }
 
   if (dogData.min_weight) {
-    if (!/^[0-9]+$/.test(dogData.min_weight))
-      errors.min_weight = "Write only numbers ";
+    if (!/^[0-9A-Za-z\s]+$/.test(dogData.min_weight))
+      errors.min_weight = "Write only numbers, uppercase letters, and spaces";
     else if (parseInt(dogData.min_weight) >= parseInt(dogData.max_weight))
       errors.min_weight =
         "Min-Weight cannot be greater than or equal to max-width ";
@@ -60,8 +60,8 @@ const validate = (dogData) => {
   }
 
   if (dogData.life_span) {
-    if (!/^[0-9]+$/.test(dogData.life_span))
-      errors.life_span = "Write only numbers ";
+    if (!/^[0-9\s]+$/.test(dogData.life_span))
+      errors.life_span = "Write only numbers and spaces";
     else if (parseInt(dogData.life_span) <= 0)
       errors.life_span = "The life years cannot be less than or equal to 0";
     else errors.life_span = "";
@@ -69,6 +69,7 @@ const validate = (dogData) => {
     if (!dogData.life_span)
       errors.life_span = "The life years of the dog cannot be null";
   }
+
   if (dogData.temperaments) {
     if (dogData.temperaments.length === 0) errors.temperaments = "";
     else {
